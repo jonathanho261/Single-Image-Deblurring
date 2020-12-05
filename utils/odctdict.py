@@ -1,5 +1,6 @@
 import numpy as np 
 
+# Credit: https://github.com/wy1iu/LP_KSVD/blob/master/ksvdbox/odctdict.m
 def odctdict(N, L):
     """
     @brief      Creates an overcomplete DCT dictionary
