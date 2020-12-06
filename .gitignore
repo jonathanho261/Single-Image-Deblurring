@@ -130,3 +130,8 @@ dmypy.json
 
 # dataset
 data/
+
+# images
+*.jpg
+*.jpeg
+*.png
