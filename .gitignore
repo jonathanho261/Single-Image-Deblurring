@@ -131,6 +131,9 @@ dmypy.json
 # dataset
 data/
 
+# outputs
+output/
+
 # images
 *.jpg
 *.jpeg
