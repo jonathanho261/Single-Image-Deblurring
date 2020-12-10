@@ -41,3 +41,6 @@ plt.show()
 ```
 pip install -r requirements.txt
 ```
+
+#### Project Report and Acknowledgements
+https://docs.google.com/document/d/14u6S1osvJHnJnakIf7TdsWBOcf2fvOYLOCneCbLOC5M/edit?usp=sharing
