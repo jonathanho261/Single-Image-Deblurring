@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 
 
-# Credit: 
+# Credit: Project 1 CS 445
 def gaussian_kernel(sigma, kernel_half_size):
     '''
     Inputs:
@@ -27,17 +27,23 @@ def gaussian_kernel(sigma, kernel_half_size):
 
     return gaussian_kernel_2d
 
-# source: https://stackoverflow.com/questions/17190649/how-to-obtain-a-gaussian-filter-in-python
-def matlab_style_gauss2D(shape=(3,3),sigma=0.5):
+def get_patch_indices(image, i, j, patch_size):
     """
-    2D gaussian mask - should give the same result as MATLAB's
-    fspecial('gaussian',[shape],[sigma])
+    @brief      Return a patch of size patch_size that is within the bounds of the image
+                
+    @param      image      image to extract patch
+    @param      i          patch height index
+    @param      j          patch width index
+    @param      patch_size tuple containing desired patch dimensions
+    
+    @return     tuple of 4 elements: (height start, height end, width start, width end)
     """
-    m,n = [(ss-1.)/2. for ss in shape]
-    y,x = np.ogrid[-m:m+1,-n:n+1]
-    h = np.exp( -(x*x + y*y) / (2.*sigma*sigma) )
-    h[ h < np.finfo(h.dtype).eps*h.max() ] = 0
-    sumh = h.sum()
-    if sumh != 0:
-        h /= sumh
-    return h
+    if i >= image.shape[0]-patch_size and j >= image.shape[1]-patch_size:
+        indices = (image.shape[0]-patch_size, image.shape[0], image.shape[1]-patch_size, image.shape[1])
+    elif i >= image.shape[0]-patch_size:
+        indices = (image.shape[0]-patch_size, image.shape[0], j, j+patch_size)
+    elif j >= image.shape[1]-patch_size:
+        indices = (i, i+patch_size, image.shape[1]-patch_size, image.shape[1])
+    else:
+        indices = (i, i+patch_size, j, j+patch_size)
+    return indices
